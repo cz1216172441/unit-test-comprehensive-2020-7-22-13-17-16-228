@@ -5,7 +5,7 @@ public class GuessTimesLimiter {
     private int times;
 
     public GuessTimesLimiter() {
-        this.times = 0;
+        this.times = 1;
     }
 
     public GuessTimesLimiter(int times) {
@@ -13,6 +13,6 @@ public class GuessTimesLimiter {
     }
 
     public boolean isTimesExceeded() {
-        return false;
+        return times > 6;
     }
 }

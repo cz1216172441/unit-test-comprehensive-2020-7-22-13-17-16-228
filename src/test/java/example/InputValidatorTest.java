@@ -67,7 +67,7 @@ public class InputValidatorTest {
     @Test
     void should_return_false_when_input_param_validate_given_one_value_more_than_9_at_least() {
         // given
-        int[] guessAnswer = {1, 2, 3, 9};
+        int[] guessAnswer = {1, 2, 3, 10};
         // when
         boolean isParamValid = inputValidator.inputParamValidate(guessAnswer);
         // then

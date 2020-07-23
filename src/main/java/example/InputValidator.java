@@ -9,7 +9,7 @@ public class InputValidator {
                 return false;
             }
             for (int value: guessAnswer) {
-                if (value < 0) {
+                if (value < 0 || value > 9) {
                     isParamValid = false;
                     break;
                 }

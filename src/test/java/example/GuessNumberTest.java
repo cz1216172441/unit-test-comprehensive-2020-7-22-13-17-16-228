@@ -15,11 +15,15 @@ public class GuessNumberTest {
     @Mock
     private GuessNumber guessNumber;
 
+    @Mock
+    private GuessTimesLimiter guessTimesLimiter;
+
     @BeforeEach
     public void beforeAll() {
         answerGenerator = mock(AnswerGenerator.class);
         when(answerGenerator.generator()).thenReturn(new int[]{1, 2, 3, 4});
-        guessNumber = new GuessNumber(answerGenerator);
+        guessTimesLimiter = new GuessTimesLimiter();
+        guessNumber = new GuessNumber(answerGenerator, guessTimesLimiter);
     }
 
     @Test

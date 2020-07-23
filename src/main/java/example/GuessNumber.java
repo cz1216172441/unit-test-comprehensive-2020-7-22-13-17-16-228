@@ -9,12 +9,18 @@ public class GuessNumber {
     }
 
     public String guess(int[] guessAnswer) {
-        int valueAndLocationIsCorrect = 0;
+        int countValueAndLocationIsCorrect = 0;
+        int countValueCorrectButLocationWrong = 0;
         for (int i = 0; i < answer.length; i++) {
             if (answer[i] == guessAnswer[i]) {
-                ++valueAndLocationIsCorrect;
+                ++countValueAndLocationIsCorrect;
+            }
+            for (int j = 0; j < answer.length; j ++) {
+                if (answer[i] != guessAnswer[i] && answer[i] == guessAnswer[j]) {
+                    ++countValueCorrectButLocationWrong;
+                }
             }
         }
-        return String.format("%dA0B", valueAndLocationIsCorrect);
+        return String.format("%dA%dB", countValueAndLocationIsCorrect, countValueCorrectButLocationWrong);
     }
 }

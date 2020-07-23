@@ -37,4 +37,15 @@ public class InputValidatorTest {
         // then
         Assertions.assertTrue(isParamValid);
     }
+
+    @Test
+    void should_return_false_when_input_param_validate_given_12345() {
+        // given
+        InputValidator inputValidator = new InputValidator();
+        int[] guessAnswer = {1, 2, 3, 4, 5};
+        // when
+        boolean isParamValid = inputValidator.inputParamValidate(guessAnswer);
+        // then
+        Assertions.assertFalse(isParamValid);
+    }
 }

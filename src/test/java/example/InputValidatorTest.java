@@ -73,4 +73,14 @@ public class InputValidatorTest {
         // then
         Assertions.assertFalse(isParamValid);
     }
+
+    @Test
+    void should_return_true_when_input_param_validate_given_all_value_is_between_0_and_9() {
+        // given
+        int[] guessAnswer = {1, 2, 3, 9};
+        // when
+        boolean isParamValid = inputValidator.inputParamValidate(guessAnswer);
+        // then
+        Assertions.assertTrue(isParamValid);
+    }
 }

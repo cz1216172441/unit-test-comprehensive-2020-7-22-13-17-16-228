@@ -8,7 +8,7 @@ public class AnswerGenerator {
         int[] answer = new int[4];
         Random random = new Random();
         for (int i = 0; i < answer.length; i++) {
-            answer[i] = random.nextInt();
+            answer[i] = random.nextInt(10);
         }
         return answer;
     }

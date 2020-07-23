@@ -2,6 +2,6 @@ package example;
 
 public class InputValidator {
     public boolean inputParamValidate(int[] guessAnswer) {
-        return guessAnswer != null;
+        return guessAnswer != null && guessAnswer.length >= 4;
     }
 }

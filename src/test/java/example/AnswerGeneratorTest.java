@@ -42,4 +42,20 @@ public class AnswerGeneratorTest {
         }
         Assertions.assertFalse(hasRepeated);
     }
+
+    @Test
+    void should_return_array_and_each_value_is_between_0_and_9_when_generate() {
+        // given
+        // when
+        int[] answer = answerGenerator.generator();
+        // then
+        boolean isValid = true;
+        for (int value : answer) {
+            if (value < 0 || value > 9) {
+                isValid = false;
+                break;
+            }
+        }
+        Assertions.assertTrue(isValid);
+    }
 }

@@ -9,16 +9,12 @@ public class GuessNumber {
     }
 
     public String guess(int[] guessAnswer) {
-        boolean flag = true;
+        int valueAndLocationIsCorrect = 0;
         for (int i = 0; i < answer.length; i++) {
-            if (answer[i] != guessAnswer[i]) {
-                flag = false;
-                break;
+            if (answer[i] == guessAnswer[i]) {
+                ++valueAndLocationIsCorrect;
             }
         }
-        if (flag) {
-            return "4A0B";
-        }
-        return null;
+        return String.format("%dA0B", valueAndLocationIsCorrect);
     }
 }

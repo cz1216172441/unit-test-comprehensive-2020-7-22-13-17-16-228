@@ -11,7 +11,7 @@ public class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
         int[] guessAnswer = null;
         // when
-        boolean isParamValid = inputValidator.inputParamValidate();
+        boolean isParamValid = inputValidator.inputParamValidate(guessAnswer);
         // then
         Assertions.assertFalse(isParamValid);
     }

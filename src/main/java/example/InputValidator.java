@@ -1,7 +1,7 @@
 package example;
 
 public class InputValidator {
-    public boolean inputParamValidate() {
+    public boolean inputParamValidate(int[] guessAnswer) {
         return true;
     }
 }

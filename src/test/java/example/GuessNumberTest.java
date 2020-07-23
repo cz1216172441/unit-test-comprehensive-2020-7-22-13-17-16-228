@@ -26,7 +26,7 @@ public class GuessNumberTest {
         // given
         int[] guessAnswer = {5, 6, 7, 8};
         AnswerGenerator answerGenerator = mock(AnswerGenerator.class);
-        when(answerGenerator.generator()).thenReturn(new int[]{5, 6, 7, 8});
+        when(answerGenerator.generator()).thenReturn(new int[]{1, 2, 3, 4});
         GuessNumber guessNumber = new GuessNumber(answerGenerator);
         // when
         String actual = guessNumber.guess(guessAnswer);

@@ -8,6 +8,10 @@ public class GuessTimesLimiter {
         this.times = 0;
     }
 
+    public GuessTimesLimiter(int times) {
+        this.times = times;
+    }
+
     public boolean isTimesExceeded() {
         return false;
     }

@@ -8,11 +8,8 @@ public class GuessTimesLimiterTest {
     @Test
     void should_return_true_when_is_times_exceeded_given_times_7() {
         // given
-        GuessTimesLimiter guessTimesLimiter = new GuessTimesLimiter();
+        GuessTimesLimiter guessTimesLimiter = new GuessTimesLimiter(7);
         // when
-        for (int i = 0; i < 6; i++) {
-            guessTimesLimiter.isTimesExceeded();
-        }
         boolean isTimesExceeded = guessTimesLimiter.isTimesExceeded();
         // then
         Assertions.assertTrue(isTimesExceeded);

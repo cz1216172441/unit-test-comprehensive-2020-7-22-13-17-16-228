@@ -12,19 +12,13 @@ public class GuessNumberTest {
     @Mock
     private AnswerGenerator answerGenerator;
 
-    @Mock
     private GuessNumber guessNumber;
 
-    @Mock
-    private GuessTimesLimiter guessTimesLimiter;
-
-    // todo: rename
     @BeforeEach
-    public void beforeAll() {
+    public void setUp() {
         answerGenerator = mock(AnswerGenerator.class);
         when(answerGenerator.generate()).thenReturn(new int[]{1, 2, 3, 4});
-        guessTimesLimiter = new GuessTimesLimiter();
-        guessNumber = new GuessNumber(answerGenerator, guessTimesLimiter);
+        guessNumber = new GuessNumber(answerGenerator);
     }
 
     @Test
@@ -87,16 +81,4 @@ public class GuessNumberTest {
         Assertions.assertEquals("1A1B", actual);
     }
 
-    @Test
-    void should_return_null_when_guess_number_given_answer_1234_and_guess_answer_1356_and_guess_times_7() {
-        // given
-        int[] guessAnswer = {1, 3, 5, 6};
-        // when
-        for (int i = 0; i < 6; i++) {
-            guessNumber.guess(guessAnswer);
-        }
-        String actual = guessNumber.guess(guessAnswer);
-        // then
-        Assertions.assertNull(actual);
-    }
 }

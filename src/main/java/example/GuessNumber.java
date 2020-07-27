@@ -3,18 +3,12 @@ package example;
 public class GuessNumber {
 
     private final int[] answer;
-    private final GuessTimesLimiter guessTimesLimiter;
 
-    public GuessNumber(AnswerGenerator answerGenerator, GuessTimesLimiter guessTimesLimiter) {
+    public GuessNumber(AnswerGenerator answerGenerator) {
         this.answer = answerGenerator.generate();
-        this.guessTimesLimiter = guessTimesLimiter;
     }
 
     public String guess(int[] guessAnswer) {
-        if (guessTimesLimiter.isTimesExceeded()) {
-            return null;
-        }
-        guessTimesLimiter.setTimes(guessTimesLimiter.getTimes() + 1);
         int countValueAndLocationIsCorrect = 0;
         int countValueCorrectButLocationWrong = 0;
         for (int i = 0; i < answer.length; i++) {

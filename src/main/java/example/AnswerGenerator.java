@@ -1,25 +1,24 @@
 package example;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class AnswerGenerator {
 
     public int[] generate() {
-        int[] answer = new int[4];
-        List<Integer> list = new ArrayList<>(4);
-        Random random = new Random();
-        while (list.size() < answer.length) {
-            int intValue = random.nextInt(10);
-            if (!list.contains(intValue)) {
-                list.add(intValue);
-            }
+        List<Integer> allNums = new ArrayList<>();
+        int answerSize = 4;
+        int lowerBound = 0;
+        int upperBound = 9;
+        for (int i = lowerBound; i <= upperBound; i++) {
+            allNums.add(i);
         }
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
+        Collections.shuffle(allNums);
+        return allNums.stream()
+                .limit(answerSize)
+                .mapToInt(Integer::valueOf)
+                .toArray();
     }
 
 

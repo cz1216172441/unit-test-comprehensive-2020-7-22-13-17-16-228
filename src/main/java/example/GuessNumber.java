@@ -20,6 +20,7 @@ public class GuessNumber {
                     ++countValueCorrectButLocationWrong;
                 }
             }
+            
         }
         return String.format("%dA%dB", countValueAndLocationIsCorrect, countValueCorrectButLocationWrong);
     }

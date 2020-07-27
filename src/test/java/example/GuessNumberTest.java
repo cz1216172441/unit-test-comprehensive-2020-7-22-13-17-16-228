@@ -18,10 +18,11 @@ public class GuessNumberTest {
     @Mock
     private GuessTimesLimiter guessTimesLimiter;
 
+    // todo: rename
     @BeforeEach
     public void beforeAll() {
         answerGenerator = mock(AnswerGenerator.class);
-        when(answerGenerator.generator()).thenReturn(new int[]{1, 2, 3, 4});
+        when(answerGenerator.generate()).thenReturn(new int[]{1, 2, 3, 4});
         guessTimesLimiter = new GuessTimesLimiter();
         guessNumber = new GuessNumber(answerGenerator, guessTimesLimiter);
     }

@@ -1,13 +1,12 @@
 package example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class AnswerGenerator {
 
-    public int[] generator() {
+    public int[] generate() {
         int[] answer = new int[4];
         List<Integer> list = new ArrayList<>(4);
         Random random = new Random();
@@ -22,5 +21,7 @@ public class AnswerGenerator {
         }
         return answer;
     }
+
+
 
 }

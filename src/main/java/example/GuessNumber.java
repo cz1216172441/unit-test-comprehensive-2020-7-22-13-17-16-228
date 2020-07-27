@@ -6,7 +6,7 @@ public class GuessNumber {
     private final GuessTimesLimiter guessTimesLimiter;
 
     public GuessNumber(AnswerGenerator answerGenerator, GuessTimesLimiter guessTimesLimiter) {
-        this.answer = answerGenerator.generator();
+        this.answer = answerGenerator.generate();
         this.guessTimesLimiter = guessTimesLimiter;
     }
 

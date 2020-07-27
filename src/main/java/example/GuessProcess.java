@@ -1,6 +1,6 @@
 package example;
 
-public class GuessTimesLimiter {
+public class GuessProcess {
 
     private int times;
 
@@ -12,11 +12,11 @@ public class GuessTimesLimiter {
         return times;
     }
 
-    public GuessTimesLimiter() {
+    public GuessProcess() {
         this.times = 1;
     }
 
-    public GuessTimesLimiter(int times) {
+    public GuessProcess(int times) {
         this.times = times;
     }
 

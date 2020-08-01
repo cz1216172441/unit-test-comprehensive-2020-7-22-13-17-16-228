@@ -5,12 +5,12 @@ import java.util.Arrays;
 public class InputValidator {
 
     public boolean inputParamValidate(int[] guessAnswer) {
-        if (guessAnswer != null && guessAnswer.length == 4) {
+        if (guessAnswer != null && guessAnswer.length == AnswerGenerator.ANSWER_LIMITED_SIZE) {
             long count = Arrays.stream(guessAnswer)
-                    .filter(val -> val >= 0 && val <= 9)
+                    .filter(val -> val >= AnswerGenerator.ANSWER_LOWER_BOUND && val <= AnswerGenerator.ANSWER_UPPER_BOUND)
                     .distinct()
                     .count();
-            return count == 4;
+            return count == AnswerGenerator.ANSWER_LIMITED_SIZE;
         }
         return false;
     }

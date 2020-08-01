@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
 
 public class GuessApplicationTest {
 
@@ -50,6 +49,26 @@ public class GuessApplicationTest {
                     () -> assertEquals("Guess Game Start...", output[0]),
                     () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
                     () -> assertEquals("Wrong Input，Input again: ", output[2])
+            );
+        }
+    }
+
+    @Test
+    void should_output_game_won_when_play_given_4A0B() {
+        // given
+        String input = "1 2 3 4";
+        // when
+        try (
+                MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)
+        ) {
+            mocked.when(InputUnit::getInput).thenReturn(input);
+            guessApplication.play();
+            // then
+            String[] output = outContent.toString().split("\n");
+            assertAll(
+                    () -> assertEquals("Guess Game Start...", output[0]),
+                    () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
+                    () -> assertEquals("Game Won!!!", output[2])
             );
         }
     }

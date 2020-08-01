@@ -33,4 +33,12 @@ public class InputConverterTest {
         // then
         assertThrows(NumberFormatException.class, () -> InputConverter.convert(input));
     }
+
+    @Test
+    void should_throw_null_pointer_exception_when_convert_given_null() {
+        // given
+        // when
+        // then
+        assertThrows(NullPointerException.class, () -> InputConverter.convert(null));
+    }
 }

@@ -8,6 +8,7 @@ import org.mockito.MockedStatic;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
@@ -44,7 +45,12 @@ public class GuessApplicationTest {
             mocked.when(InputUnit::getInput).thenReturn(input);
             guessApplication.play();
             // then
-            assertEquals("Wrong Input，Input again\n", outContent.toString());
+            String[] output = outContent.toString().split("\n");
+            assertAll(
+                    () -> assertEquals("Guess Game Start...", output[0]),
+                    () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
+                    () -> assertEquals("Wrong Input，Input again: ", output[2])
+            );
         }
     }
 }

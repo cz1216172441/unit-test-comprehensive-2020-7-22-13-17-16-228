@@ -1,5 +1,9 @@
 package example;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GuessNumber {
 
     private final int[] answer;
@@ -9,19 +13,24 @@ public class GuessNumber {
     }
 
     public String guess(int[] guessAnswer) {
-        int countValueAndLocationIsCorrect = 0;
-        int countValueCorrectButLocationWrong = 0;
-        for (int i = 0; i < answer.length; i++) {
-            if (answer[i] == guessAnswer[i]) {
-                ++countValueAndLocationIsCorrect;
-            }
-            for (int j = 0; j < answer.length; j ++) {
-                if (answer[i] != guessAnswer[i] && answer[i] == guessAnswer[j]) {
-                    ++countValueCorrectButLocationWrong;
-                }
-            }
-            
-        }
-        return String.format("%dA%dB", countValueAndLocationIsCorrect, countValueCorrectButLocationWrong);
+        List<Integer> actualNums = Arrays.stream(answer).boxed().collect(Collectors.toList());
+        List<Integer> guessNums = Arrays.stream(guessAnswer).boxed().collect(Collectors.toList());
+
+        int aCount = guessNumAndIndexCorrect(actualNums, guessNums);
+        int bCount = guessNumCorrectButIndexIncorrect(actualNums, guessNums, aCount);
+
+        return String.format("%dA%dB", aCount, bCount);
+    }
+
+    private int guessNumAndIndexCorrect(List<Integer> actualNums, List<Integer> guessNums) {
+        return (int) actualNums.stream()
+                .filter(num -> num.equals(guessNums.get(actualNums.indexOf(num))))
+                .count();
+    }
+
+    private int guessNumCorrectButIndexIncorrect(List<Integer> actualNums, List<Integer> guessNums, int aCount) {
+        return (int) actualNums.stream()
+                .filter(guessNums::contains)
+                .count() - aCount;
     }
 }

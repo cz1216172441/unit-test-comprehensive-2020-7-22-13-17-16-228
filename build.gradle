@@ -38,6 +38,7 @@ dependencies {
     // Use JUnit test framework
     testCompile 'org.mockito:mockito-core:3.4.0'
     testCompile 'org.mockito:mockito-inline:3.4.0'
+    testCompile 'org.mockito:mockito-junit-jupiter:3.4.6'
 }
 
 test {

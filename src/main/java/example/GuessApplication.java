@@ -2,8 +2,19 @@ package example;
 
 public class GuessApplication {
 
+    private final GuessNumber guessNumber;
+    private final InputValidator inputValidator;
+
+    public GuessApplication(GuessNumber guessNumber, InputValidator inputValidator) {
+        this.guessNumber = guessNumber;
+        this.inputValidator = inputValidator;
+    }
+
     public static void main(String[] args) {
-        GuessApplication guessApplication = new GuessApplication();
+        AnswerGenerator answerGenerator = new AnswerGenerator();
+        GuessNumber guessNumber = new GuessNumber(answerGenerator);
+        InputValidator inputValidator = new InputValidator();
+        GuessApplication guessApplication = new GuessApplication(guessNumber, inputValidator);
         guessApplication.play();
     }
 
@@ -12,6 +23,12 @@ public class GuessApplication {
         System.out.print("please enter 4 numbers (0-9, no repeated, separated by spaces): \n");
         try {
             int[] guessAnswer = InputConverter.convert(InputUnit.getInput());
+            if (inputValidator.inputParamValidate(guessAnswer)) {
+                String result = guessNumber.guess(guessAnswer);
+                if (result.equals("4A0B")) {
+                    System.out.print("Game Won!!!\n");
+                }
+            }
         } catch (Exception e) {
             System.out.print("Wrong Input，Input again: \n");
         }

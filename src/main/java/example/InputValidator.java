@@ -1,19 +1,17 @@
 package example;
 
+import java.util.Arrays;
+
 public class InputValidator {
+
     public boolean inputParamValidate(int[] guessAnswer) {
-        boolean isParamValid = false;
-        if (guessAnswer != null) {
-            isParamValid = guessAnswer.length == 4;
-            if (!isParamValid) {
-                return false;
-            }
-            for (int value: guessAnswer) {
-                if (value < 0 || value > 9) {
-                    return false;
-                }
-            }
+        if (guessAnswer != null && guessAnswer.length == 4) {
+            long count = Arrays.stream(guessAnswer)
+                    .filter(val -> val < 0 || val > 9)
+                    .count();
+            return count == 0;
         }
-        return isParamValid;
+        return false;
     }
+
 }

@@ -1,22 +1,16 @@
 package example;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class AnswerGenerator {
 
     public int[] generate() {
-        List<Integer> allNums = new ArrayList<>();
-        int answerSize = 4;
-        int lowerBound = 0;
-        int upperBound = 9;
-        for (int i = lowerBound; i <= upperBound; i++) {
-            allNums.add(i);
-        }
-        Collections.shuffle(allNums);
-        return allNums.stream()
-                .limit(answerSize)
+        List<Integer> source = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        Collections.shuffle(source);
+        return source.stream()
+                .limit(4)
                 .mapToInt(Integer::valueOf)
                 .toArray();
     }

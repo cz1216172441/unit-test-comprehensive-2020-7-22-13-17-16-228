@@ -1,16 +1,18 @@
 package example;
 
-import java.util.Scanner;
-
 public class GuessApplication {
 
     public static void main(String[] args) {
-        play();
+        GuessApplication guessApplication = new GuessApplication();
+        guessApplication.play();
     }
 
-    public static void play() {
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
+    public void play() {
+        try {
+            int[] guessAnswer = InputConverter.convert(InputUnit.getInput());
+        } catch (Exception e) {
+            System.out.print("Wrong Input，Input again\n");
+        }
     }
 
 }

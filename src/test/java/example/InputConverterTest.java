@@ -24,4 +24,13 @@ public class InputConverterTest {
         // then
         assertThrows(NumberFormatException.class, () -> InputConverter.convert(input));
     }
+
+    @Test
+    void should_throw_number_format_exception_when_convert_given_empty_string() {
+        // given
+        String input = "";
+        // when
+        // then
+        assertThrows(NumberFormatException.class, () -> InputConverter.convert(input));
+    }
 }

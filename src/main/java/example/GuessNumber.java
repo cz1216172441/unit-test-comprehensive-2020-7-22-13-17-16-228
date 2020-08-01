@@ -29,6 +29,9 @@ public class GuessNumber {
     }
 
     private int guessNumCorrectButIndexIncorrect(List<Integer> actualNums, List<Integer> guessNums, int aCount) {
+        if (aCount == AnswerGenerator.ANSWER_LIMITED_SIZE) {
+            return 0;
+        }
         return (int) actualNums.stream()
                 .filter(guessNums::contains)
                 .count() - aCount;

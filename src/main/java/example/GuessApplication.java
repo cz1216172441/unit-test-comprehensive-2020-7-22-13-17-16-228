@@ -36,6 +36,8 @@ public class GuessApplication {
                     String result = guessNumber.guess(guessAnswer);
                     if (result.equals("4A0B")) {
                         System.out.print("Game Won!!!\n");
+                    } else if (currentGuessTimes == GUESS_LIMITED_TIMES - 1) {
+                        System.out.print("Game Over!!!\n");
                     } else {
                         System.out.print(result + "\n");
                     }

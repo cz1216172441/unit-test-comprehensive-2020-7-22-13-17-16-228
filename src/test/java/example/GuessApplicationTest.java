@@ -71,30 +71,14 @@ public class GuessApplicationTest {
         // when
         try (MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)) {
             mocked.when(InputUnit::getInput)
-                    .thenReturn(input1)
-                    .thenReturn(input1)
-                    .thenReturn(input1)
-                    .thenReturn(input1)
-                    .thenReturn(input1)
-                    .thenReturn(input2);
-            when(inputConverter.convert(anyString())).thenReturn(guessAnswer1)
-                    .thenReturn(guessAnswer1)
-                    .thenReturn(guessAnswer1)
-                    .thenReturn(guessAnswer1)
-                    .thenReturn(guessAnswer1)
-                    .thenReturn(guessAnswer2);
-            when(inputValidator.inputParamValidate(any())).thenReturn(true)
-                .thenReturn(true)
-                .thenReturn(true)
-                .thenReturn(true)
-                .thenReturn(true)
-                .thenReturn(true);
-            when(guessNumber.guess(any())).thenReturn(result1)
-                .thenReturn(result1)
-                .thenReturn(result1)
-                .thenReturn(result1)
-                .thenReturn(result1)
-                .thenReturn(result2);
+                    .thenReturn(input1, input1, input1, input1, input1, input2);
+            when(inputConverter.convert(anyString()))
+                    .thenReturn(guessAnswer1, guessAnswer1, guessAnswer1,
+                            guessAnswer1, guessAnswer1, guessAnswer2);
+            when(inputValidator.inputParamValidate(any()))
+                    .thenReturn(true);
+            when(guessNumber.guess(any()))
+                    .thenReturn(result1, result1, result1, result1, result1, result2);
             guessApplication.play();
             // then
             String[] output = outContent.toString().split("\n");

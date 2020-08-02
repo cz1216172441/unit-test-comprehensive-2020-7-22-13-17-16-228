@@ -95,4 +95,37 @@ public class GuessApplicationTest {
         }
     }
 
+    @Test
+    void should_output_game_over_when_play_given_times_5_and_final_result_is_3A0B() {
+        // given
+        String input = "1 2 3 0";
+        String result = "3A0B";
+        int[] guessAnswer = new int[]{1, 2, 3, 0};
+        // when
+        try (MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)) {
+            mocked.when(InputUnit::getInput)
+                    .thenReturn(input, input, input, input, input, input);
+            when(inputConverter.convert(anyString()))
+                    .thenReturn(guessAnswer, guessAnswer, guessAnswer,
+                            guessAnswer, guessAnswer, guessAnswer);
+            when(inputValidator.inputParamValidate(any()))
+                    .thenReturn(true);
+            when(guessNumber.guess(any()))
+                    .thenReturn(result, result, result, result, result, result);
+            guessApplication.play();
+            // then
+            String[] output = outContent.toString().split("\n");
+            assertAll("game process",
+                    () -> assertEquals("Guess Game Start...", output[0]),
+                    () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
+                    () -> assertEquals(result, output[2]),
+                    () -> assertEquals(result, output[3]),
+                    () -> assertEquals(result, output[4]),
+                    () -> assertEquals(result, output[5]),
+                    () -> assertEquals(result, output[6]),
+                    () -> assertEquals("Game Over!!!", output[7])
+            );
+        }
+    }
+
 }

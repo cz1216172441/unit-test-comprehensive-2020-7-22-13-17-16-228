@@ -30,23 +30,25 @@ public class GuessApplication {
         System.out.print("Guess Game Start...\n");
         System.out.print("please enter 4 numbers (0-9, no repeated, separated by spaces): \n");
         while (currentGuessTimes < GUESS_LIMITED_TIMES) {
+            int[] guessAnswer;
             try {
-                int[] guessAnswer = inputConverter.convert(InputUnit.getInput());
-                if (inputValidator.inputParamValidate(guessAnswer)) {
-                    String result = guessNumber.guess(guessAnswer);
-                    if (result.equals("4A0B")) {
-                        System.out.print("Game Won!!!\n");
-                        break;
-                    } else if (currentGuessTimes == GUESS_LIMITED_TIMES - 1) {
-                        System.out.print("Game Over!!!\n");
-                    } else {
-                        System.out.print(result + "\n");
-                    }
-                    ++currentGuessTimes;
-                } else {
-                    System.out.print("Wrong Input, Input again: \n");
-                }
+                guessAnswer = inputConverter.convert(InputUnit.getInput());
             } catch (Exception e) {
+                System.out.print("Wrong Input, Input again: \n");
+                continue;
+            }
+            if (inputValidator.inputParamValidate(guessAnswer)) {
+                String result = guessNumber.guess(guessAnswer);
+                if (result.equals("4A0B")) {
+                    System.out.print("Game Won!!!\n");
+                    break;
+                } else if (currentGuessTimes == GUESS_LIMITED_TIMES - 1) {
+                    System.out.print("Game Over!!!\n");
+                } else {
+                    System.out.print(result + "\n");
+                }
+                ++currentGuessTimes;
+            } else {
                 System.out.print("Wrong Input, Input again: \n");
             }
         }

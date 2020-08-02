@@ -6,7 +6,7 @@ public class InputConverter {
 
     private final static String DELIMITER = " ";
 
-    public static int[] convert(String input) throws NumberFormatException {
+    public int[] convert(String input) throws NumberFormatException {
         return Arrays.stream(input.trim().split(DELIMITER))
                 .map(Integer::valueOf)
                 .mapToInt(Integer::intValue)

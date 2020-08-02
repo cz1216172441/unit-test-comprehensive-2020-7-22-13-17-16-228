@@ -1,17 +1,25 @@
 package example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InputConverterTest {
 
+    private InputConverter inputConverter;
+
+    @BeforeEach
+    public void setUp() {
+        inputConverter = new InputConverter();
+    }
+
     @Test
     void should_return_int_array_1234_when_convert_given_string_1234() {
         // given
         String input = "1 2 3 4";
         // when
-        int[] actual = InputConverter.convert(input);
+        int[] actual = inputConverter.convert(input);
         // then
         assertArrayEquals(new int[]{1, 2, 3, 4}, actual);
     }
@@ -22,7 +30,7 @@ public class InputConverterTest {
         String input = "a 1 2 3";
         // when
         // then
-        assertThrows(NumberFormatException.class, () -> InputConverter.convert(input));
+        assertThrows(NumberFormatException.class, () -> inputConverter.convert(input));
     }
 
     @Test
@@ -31,7 +39,7 @@ public class InputConverterTest {
         String input = "";
         // when
         // then
-        assertThrows(NumberFormatException.class, () -> InputConverter.convert(input));
+        assertThrows(NumberFormatException.class, () -> inputConverter.convert(input));
     }
 
     @Test
@@ -39,6 +47,6 @@ public class InputConverterTest {
         // given
         // when
         // then
-        assertThrows(NullPointerException.class, () -> InputConverter.convert(null));
+        assertThrows(NullPointerException.class, () -> inputConverter.convert(null));
     }
 }

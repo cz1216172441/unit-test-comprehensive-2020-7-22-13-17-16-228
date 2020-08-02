@@ -43,6 +43,8 @@ public class GuessApplication {
                         System.out.print(result + "\n");
                     }
                     ++currentGuessTimes;
+                } else {
+                    System.out.print("Wrong Input, Input again: \n");
                 }
             } catch (Exception e) {
                 System.out.print("Wrong Input, Input again: \n");

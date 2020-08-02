@@ -27,6 +27,9 @@ public class GuessApplicationTest {
     @Mock
     private InputValidator inputValidator;
 
+    @Mock
+    private InputConverter inputConverter;
+
     private ByteArrayOutputStream outContent;
 
     @BeforeEach
@@ -42,6 +45,7 @@ public class GuessApplicationTest {
         // when
         try (MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)) {
             mocked.when(InputUnit::getInput).thenReturn(input);
+            when(inputConverter.convert(anyString())).thenReturn(new int[]{1, 2, 3, 4});
             when(inputValidator.inputParamValidate(any())).thenReturn(true);
             when(guessNumber.guess(any())).thenReturn("4A0B");
             guessApplication.play();
@@ -62,6 +66,8 @@ public class GuessApplicationTest {
         String input2 = "1 2 3 4";
         String result1 = "3A0B";
         String result2 = "4A0B";
+        int[] guessAnswer1 = new int[]{1, 2, 3, 0};
+        int[] guessAnswer2 = new int[]{1, 2, 3, 4};
         // when
         try (MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)) {
             mocked.when(InputUnit::getInput)
@@ -71,6 +77,12 @@ public class GuessApplicationTest {
                     .thenReturn(input1)
                     .thenReturn(input1)
                     .thenReturn(input2);
+            when(inputConverter.convert(anyString())).thenReturn(guessAnswer1)
+                    .thenReturn(guessAnswer1)
+                    .thenReturn(guessAnswer1)
+                    .thenReturn(guessAnswer1)
+                    .thenReturn(guessAnswer1)
+                    .thenReturn(guessAnswer2);
             when(inputValidator.inputParamValidate(any())).thenReturn(true)
                 .thenReturn(true)
                 .thenReturn(true)

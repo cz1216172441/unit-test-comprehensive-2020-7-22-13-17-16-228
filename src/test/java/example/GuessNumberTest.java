@@ -82,16 +82,4 @@ public class GuessNumberTest {
         Assertions.assertEquals("1A1B", actual);
     }
 
-    @Test
-    void should_return_null_when_guess_number_given_answer_1234_and_guess_answer_1356_and_guess_times_7() {
-        // given
-        int[] guessAnswer = {1, 3, 5, 6};
-        // when
-        for (int i = 0; i < 6; i++) {
-            guessNumber.guess(guessAnswer);
-        }
-        String actual = guessNumber.guess(guessAnswer);
-        // then
-        Assertions.assertNull(actual);
-    }
 }

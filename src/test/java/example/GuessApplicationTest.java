@@ -47,7 +47,7 @@ public class GuessApplicationTest {
             guessApplication.play();
             // then
             String[] output = outContent.toString().split("\n");
-            assertAll(
+            assertAll("game process",
                     () -> assertEquals("Guess Game Start...", output[0]),
                     () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
                     () -> assertEquals("Game Won!!!", output[2])
@@ -86,7 +86,7 @@ public class GuessApplicationTest {
             guessApplication.play();
             // then
             String[] output = outContent.toString().split("\n");
-            assertAll(
+            assertAll("game process",
                     () -> assertEquals("Guess Game Start...", output[0]),
                     () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
                     () -> assertEquals(result1, output[2]),

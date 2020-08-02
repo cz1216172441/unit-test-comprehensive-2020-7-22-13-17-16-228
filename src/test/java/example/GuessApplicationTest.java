@@ -109,13 +109,12 @@ public class GuessApplicationTest {
             assertAll(
                     () -> assertEquals("Guess Game Start...", output[0]),
                     () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
-                    () -> assertEquals("3A0B\n", output[2]),
-                    () -> assertEquals("3A0B\n", output[3]),
-                    () -> assertEquals("3A0B\n", output[4]),
-                    () -> assertEquals("3A0B\n", output[5]),
-                    () -> assertEquals("3A0B\n", output[6]),
-                    () -> assertEquals("4A0B\n", output[7]),
-                    () -> assertEquals("Game Won!!!", output[8])
+                    () -> assertEquals(result1, output[2]),
+                    () -> assertEquals(result1, output[3]),
+                    () -> assertEquals(result1, output[4]),
+                    () -> assertEquals(result1, output[5]),
+                    () -> assertEquals(result1, output[6]),
+                    () -> assertEquals("Game Won!!!", output[7])
             );
         }
     }

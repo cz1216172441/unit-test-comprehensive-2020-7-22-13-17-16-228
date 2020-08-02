@@ -155,4 +155,29 @@ public class GuessApplicationTest {
         }
     }
 
+    @Test
+    void should_output_wrong_input_and_final_game_won_when_play_given_a230_and_1234() {
+        // given
+        String input1 = "a 2 3 0";
+        String input2 = "1 2 3 4";
+        int[] guessAnswer = new int[]{1, 2, 3, 4};
+        String result = "4A0B";
+        // when
+        try (MockedStatic<InputUnit> mocked = mockStatic(InputUnit.class)) {
+            mocked.when(InputUnit::getInput).thenReturn(input1, input2, input2);
+            when(inputConverter.convert(anyString())).thenThrow(NumberFormatException.class).thenReturn(guessAnswer);
+            when(inputValidator.inputParamValidate(any())).thenReturn(true);
+            when(guessNumber.guess(any())).thenReturn(result);
+            guessApplication.play();
+            // then
+            String[] output = outContent.toString().split("\n");
+            assertAll("game process",
+                    () -> assertEquals("Guess Game Start...", output[0]),
+                    () -> assertEquals("please enter 4 numbers (0-9, no repeated, separated by spaces): ", output[1]),
+                    () -> assertEquals("Wrong Input, Input again: ", output[2]),
+                    () -> assertEquals("Game Won!!!", output[3])
+            );
+        }
+    }
+
 }

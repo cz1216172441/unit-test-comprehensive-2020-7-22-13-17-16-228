@@ -45,7 +45,7 @@ public class GuessApplication {
                     ++currentGuessTimes;
                 }
             } catch (Exception e) {
-                System.out.print("Wrong Input，Input again: \n");
+                System.out.print("Wrong Input, Input again: \n");
             }
         }
     }

@@ -6,9 +6,12 @@ public class GuessApplication {
 
     private int currentGuessTimes;
     private final GuessNumber guessNumber;
+    private final InputConverter inputConverter;
     private final InputValidator inputValidator;
 
-    public GuessApplication(GuessNumber guessNumber, InputValidator inputValidator) {
+    public GuessApplication(GuessNumber guessNumber, InputConverter inputConverter,
+                            InputValidator inputValidator) {
+        this.inputConverter = inputConverter;
         this.currentGuessTimes = 0;
         this.guessNumber = guessNumber;
         this.inputValidator = inputValidator;
@@ -17,8 +20,9 @@ public class GuessApplication {
     public static void main(String[] args) {
         AnswerGenerator answerGenerator = new AnswerGenerator();
         GuessNumber guessNumber = new GuessNumber(answerGenerator);
+        InputConverter inputConverter = new InputConverter();
         InputValidator inputValidator = new InputValidator();
-        GuessApplication guessApplication = new GuessApplication(guessNumber, inputValidator);
+        GuessApplication guessApplication = new GuessApplication(guessNumber, inputConverter, inputValidator);
         guessApplication.play();
     }
 
@@ -27,7 +31,7 @@ public class GuessApplication {
         System.out.print("please enter 4 numbers (0-9, no repeated, separated by spaces): \n");
         while (currentGuessTimes < GUESS_LIMITED_TIMES) {
             try {
-                int[] guessAnswer = InputConverter.convert(InputUnit.getInput());
+                int[] guessAnswer = inputConverter.convert(InputUnit.getInput());
                 if (inputValidator.inputParamValidate(guessAnswer)) {
                     String result = guessNumber.guess(guessAnswer);
                     if (result.equals("4A0B")) {
